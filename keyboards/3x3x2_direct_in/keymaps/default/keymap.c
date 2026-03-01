@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TO(2), KC_2, KC_3,      LALT(KC_LEFT),  LSFT(KC_F5), LCTL(KC_J),
         
         /* Row 1 physical positions */
-        KC_4, KC_5, KC_6,       KC_A,           KC_S,       KC_D,
+        KC_4, KC_5, KC_6,       KC_A,           LCTL(KC_BACKSLASH),       LCTL(KC_EQUAL),
         
         /* Row 2 physical positions */
         KC_7, KC_8, KC_9,       LCTL(KC_X), LCTL(KC_C), LCTL(KC_V)
