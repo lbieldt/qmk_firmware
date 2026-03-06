@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    
+    static uint16_t boot_timer = 0;
 
     switch (keycode) {
         case (QK_TO | 1):
@@ -65,23 +65,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
-        case EM_WK:
-            if (record->event.pressed) {
-                SEND_STRING("lbieldt.ctr@x-energy.com");
-            }
-            return false;
+    case EM_WK:
+        if (record->event.pressed) {
+            SEND_STRING("lbieldt.ctr" SS_AT "x-energy.com");
+        }
+        return false;
 
-        case EM_PR:
-            if (record->event.pressed) {
-                SEND_STRING("lbieldt@gmail.com");
-            }
-            return false;
+    case EM_PR:
+        if (record->event.pressed) {
+            SEND_STRING("lbieldt" SS_AT "gmail.com");
+        }
+        return false;
 
-        case PW_TZR:
-            if (record->event.pressed) {
-                SEND_STRING("Tzr125%%55");
-            }
-            return false;
+    case PW_TZR:
+        if (record->event.pressed) {
+            SEND_STRING("Tzr125" SS_PCT SS_PCT "55");
+        }
+        return false;
+
 
         default:
             return true;
