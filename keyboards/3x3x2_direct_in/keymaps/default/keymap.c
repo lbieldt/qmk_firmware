@@ -67,19 +67,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case EM_WK:
         if (record->event.pressed) {
-            SEND_STRING("lbieldt.ctr" SS_AT "x-energy.com");
+            SEND_STRING("lbieldt.ctr@x-energy.com");
         }
         return false;
 
     case EM_PR:
         if (record->event.pressed) {
-            SEND_STRING("lbieldt" SS_AT "gmail.com");
+            SEND_STRING("lbieldt@gmail.com");
         }
         return false;
 
     case PW_TZR:
         if (record->event.pressed) {
-            SEND_STRING("Tzr125" SS_PCT SS_PCT "55");
+            SEND_STRING("Tzr125");
         }
         return false;
 
