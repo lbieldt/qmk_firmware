@@ -11,13 +11,19 @@
 
 #include QMK_KEYBOARD_H
 
+enum custom_keycodes {
+    EM_WK = SAFE_RANGE,  // Row1 Col1
+    EM_PR,               // Row1 Col2
+    PW_TZR               // Row1 Col3
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         /* Row 0 physical positions */
         TO(1), KC_1, KC_X, KC_E, KC_Q, KC_S,
         
         /* Row 1 physical positions */
-        KC_U, KC_I, KC_O, KC_Y, KC_L, KC_K,
+        EM_WK, EM_PR, PW_TZR, KC_Y, KC_L, KC_K,
         
         /* Row 2 physical positions */
         KC_Q, KC_W, KC_E, KC_J, KC_H, KC_DOT
@@ -45,20 +51,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    static uint16_t boot_timer = 0;
     
+
     switch (keycode) {
-        case (QK_TO | 1):  // TO(1) keycode = QK_TO | layer_index
+        case (QK_TO | 1):
             if (record->event.pressed) {
                 boot_timer = timer_read();
-                return true;  // Let layer toggle
+                return true;
             } else {
                 if (timer_elapsed(boot_timer) >= 1000) {
                     bootloader_jump();
                 }
-                // Tap already toggled
             }
             return false;
+
+        case EM_WK:
+            if (record->event.pressed) {
+                SEND_STRING("lbieldt.ctr@x-energy.com");
+            }
+            return false;
+
+        case EM_PR:
+            if (record->event.pressed) {
+                SEND_STRING("lbieldt@gmail.com");
+            }
+            return false;
+
+        case PW_TZR:
+            if (record->event.pressed) {
+                SEND_STRING("Tzr125%%55");
+            }
+            return false;
+
         default:
             return true;
     }
